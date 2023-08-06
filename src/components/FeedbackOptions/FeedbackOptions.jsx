@@ -4,9 +4,9 @@ import Span from "../Span";
 
 class FeedbackOptions extends Component{
     state = {
-        good: 0,
-        neutral: 0,
-        bad: 0
+        good: null,
+        neutral: null,
+        bad: null
       }
 
 
@@ -28,6 +28,9 @@ class FeedbackOptions extends Component{
 
     render(){
         const {good, neutral, bad  } = this.state
+        const totalFeedback = good + neutral + bad;
+        const positiveFeedbackPercentage = totalFeedback > 0 ? ((good / totalFeedback) * 100).toFixed(0) : 0;
+
         return(
             <>
             <Span 
@@ -37,11 +40,11 @@ class FeedbackOptions extends Component{
             />
             <p>Statistics</p>
             <div className="span">
-            <span value={good}>Good:{good} </span>
-            <span value={neutral}>Neutral: {neutral}</span>
-            <span value={bad}>Bad: {bad}</span>
-            <span>Total: {good + neutral + bad} </span>
-            <span>Positive fidbeck: {(good / (good + neutral + bad)  * 100).toFixed(0)}% </span>
+            {good &&  <span value={good}>Good:{good} </span>}
+            {neutral && <span value={neutral}>Neutral: {neutral}</span>}
+            {bad && <span value={bad}>Bad: {bad}</span>}
+            <span>Total: {totalFeedback} </span>
+            <span>Positive fidbeck: {positiveFeedbackPercentage}% </span>
             </div>
             </>
         )
