@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import './FeedbackOptions.css'
+import Span from "../Span";
 
 class FeedbackOptions extends Component{
     state = {
@@ -29,11 +30,11 @@ class FeedbackOptions extends Component{
         const {good, neutral, bad  } = this.state
         return(
             <>
-            <div className="btn">
-            <button type="button" className="btn-good" onClick={this.handleClick}>Good</button>
-            <button type="button" className="btn-neutral" onClick={this.handleNeutral}>Neutral</button>
-            <button type="button" className="btn-bad" onClick={this.handleBad}>Bad</button>
-            </div>
+            <Span 
+            handleClick= {this.handleClick}
+            handleNeutral = {this.handleNeutral}
+            handleBad= {this.handleBad}
+            />
             <p>Statistics</p>
             <div className="span">
             <span value={good}>Good:{good} </span>
